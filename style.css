@@ -1,16 +1,30 @@
+/* ============================================================
+   Harmonia — paper & play design language
+   Flat fills · 3px ink outlines · hard offset shadows
+   Lilita One (display) / Fredoka (UI) / Nunito (body)
+   ============================================================ */
+
 :root {
-  --cream: #FBF5EA;
-  --ink: #3A3230;
-  --accent: #E8843C;
-  --accent-dark: #C96A28;
+  --paper: #F3ECDC;
+  --paper-dark: #E4D9C4;
+  --ink: #2E2A26;
+  --ink-soft: rgba(46, 42, 38, 0.6);
+  --muted: #8A7F6B;
+  --coral: #FF6B5E;
+  --coral-dark: #C9483C;
+  --green: #63DD8E;
+  --green-dark: #3DA163;
   --card: #FFFFFF;
-  --muted: #8A7F78;
+  --shadow: #D8CCB4;
+  --cream: #F3ECDC;      /* legacy alias used by legal pages */
+  --accent: #FF6B5E;     /* legacy alias */
+  --accent-dark: #C9483C;/* legacy alias */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: var(--cream);
+  background: var(--paper);
   color: var(--ink);
   font-family: 'Nunito', -apple-system, sans-serif;
   line-height: 1.7;
@@ -22,6 +36,475 @@ h1, h2, h3, .brand {
   font-weight: 600;
 }
 
+a { color: var(--coral-dark); }
+
+/* ------------------------------------------------------------
+   Shared buttons
+   ------------------------------------------------------------ */
+.lp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  padding: 0.6rem 1.4rem;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.lp-btn:active { transform: translateY(3px); box-shadow: none !important; }
+
+.lp-btn-white {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 4px 0 var(--shadow);
+}
+
+.lp-btn-coral {
+  background: var(--coral);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--coral-dark);
+}
+
+.lp-btn-big {
+  font-size: 1.2rem;
+  border-radius: 18px;
+  padding: 1rem 2rem;
+  box-shadow: 0 6px 0 var(--shadow);
+}
+
+.lp-btn-coral.lp-btn-big {
+  font-family: 'Lilita One', 'Fredoka', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 0 var(--coral-dark);
+}
+
+/* ------------------------------------------------------------
+   Nav
+   ------------------------------------------------------------ */
+.lp-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3.5rem;
+  border-bottom: 3px solid var(--ink);
+  background: var(--paper);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.lp-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+  font-family: 'Lilita One', 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+}
+
+.lp-brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 3px solid var(--ink);
+  box-shadow: 0 3px 0 var(--coral-dark);
+}
+
+.lp-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.lp-nav-links > a:not(.lp-btn) {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.lp-nav-links > a:not(.lp-btn):hover { color: var(--coral); }
+
+/* ------------------------------------------------------------
+   Hero
+   ------------------------------------------------------------ */
+.lp-hero {
+  position: relative;
+  display: flex;
+  gap: 3.5rem;
+  align-items: center;
+  padding: 4.5rem 3.5rem 5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* staff-line motif behind the hero */
+.lp-hero::before {
+  content: "";
+  position: absolute;
+  top: 120px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: repeating-linear-gradient(180deg, transparent 0 24px, var(--paper-dark) 24px 27px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.lp-hero-copy {
+  position: relative;
+  flex: 1;
+  max-width: 680px;
+}
+
+.lp-badge {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  background: #B3E0C5;
+  border: 3px solid var(--ink);
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+}
+
+.lp-headline {
+  font-family: 'Lilita One', 'Fredoka', sans-serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 6vw, 4.75rem);
+  line-height: 1.02;
+  margin-top: 1.4rem;
+  color: var(--ink);
+}
+
+.lp-headline span { color: var(--coral); }
+
+.lp-lede {
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: rgba(46, 42, 38, 0.75);
+  margin-top: 1.4rem;
+  max-width: 560px;
+}
+
+.lp-hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-top: 2.1rem;
+  flex-wrap: wrap;
+}
+
+.lp-store-badges {
+  display: flex;
+  gap: 0.9rem;
+  margin-top: 1.9rem;
+  flex-wrap: wrap;
+}
+
+.lp-store-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 54px;
+  padding: 0 1.2rem;
+  border-radius: 14px;
+  background: var(--ink);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.15;
+}
+
+.lp-store-badge svg {
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+
+.lp-play-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--ink);
+  flex: none;
+  position: relative;
+}
+
+.lp-play-circle::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 6px;
+  border-left: 10px solid var(--coral);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+.lp-store-badge small {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ------------------------------------------------------------
+   Phone + screenshot carousel
+   ------------------------------------------------------------ */
+.lp-hero-phone {
+  position: relative;
+  flex: none;
+  transform: rotate(2deg);
+}
+
+.lp-phone {
+  width: 330px;
+  height: 660px;
+  border-radius: 32px;
+  border: 3px solid var(--ink);
+  box-shadow: 0 10px 0 #CDBFA3;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.lp-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lp-shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.lp-shot.active { opacity: 1; }
+
+.lp-shot-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.lp-shot-placeholder img {
+  width: 96px;
+  height: 96px;
+  border-radius: 24px;
+  border: 3px solid var(--ink);
+  box-shadow: 0 5px 0 var(--shadow);
+}
+
+.lp-shot-placeholder p {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.lp-sticker {
+  position: absolute;
+  top: -16px;
+  right: -18px;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  background: var(--green);
+  border: 3px solid var(--ink);
+  box-shadow: 0 4px 0 var(--green-dark);
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transform: rotate(6deg);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------
+   Features
+   ------------------------------------------------------------ */
+.lp-features {
+  padding: 4rem 3.5rem 4.5rem;
+  background: var(--paper-dark);
+  border-top: 3px solid var(--ink);
+}
+
+.lp-features h2 {
+  font-family: 'Lilita One', 'Fredoka', sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  text-align: center;
+}
+
+.lp-features-sub {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  margin: 0.5rem 0 2.5rem;
+}
+
+.lp-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  max-width: 1330px;
+  margin: 0 auto;
+}
+
+.lp-feature-card {
+  background: var(--card);
+  border: 3px solid var(--ink);
+  border-radius: 20px;
+  box-shadow: 0 6px 0 #CDBFA3;
+  padding: 1.6rem 1.5rem;
+}
+
+.lp-feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lp-feature-icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.lp-feature-card h3 {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+.lp-feature-card p {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(46, 42, 38, 0.65);
+  margin-top: 0.5rem;
+}
+
+/* ------------------------------------------------------------
+   CTA band
+   ------------------------------------------------------------ */
+.lp-cta-band {
+  padding: 4rem 3.5rem;
+  border-top: 3px solid var(--ink);
+}
+
+.lp-cta-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--coral);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  box-shadow: 0 8px 0 var(--coral-dark);
+  padding: 2.75rem 3rem;
+  text-align: center;
+}
+
+.lp-cta-card h2 {
+  font-family: 'Lilita One', 'Fredoka', sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: #fff;
+}
+
+.lp-cta-card p {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #FFE2DD;
+  margin: 0.5rem 0 1.6rem;
+}
+
+/* ------------------------------------------------------------
+   Landing footer
+   ------------------------------------------------------------ */
+.lp-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem 3.5rem;
+  border-top: 3px solid var(--ink);
+  background: var(--paper-dark);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.lp-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: rgba(46, 42, 38, 0.65);
+}
+
+.lp-footer-brand img {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  border: 2.5px solid var(--ink);
+}
+
+.lp-footer-links {
+  display: flex;
+  gap: 1.8rem;
+}
+
+.lp-footer-links a {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.lp-footer-links a:hover { color: var(--coral); }
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+@media (max-width: 980px) {
+  .lp-hero { flex-direction: column; padding: 3rem 1.5rem; }
+  .lp-hero-phone { transform: rotate(0deg); margin-top: 1rem; }
+  .lp-nav, .lp-features, .lp-cta-band, .lp-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .lp-sticker { right: 0; }
+}
+
+@media (max-width: 480px) {
+  .lp-phone { width: 280px; height: 560px; }
+  .lp-nav-links { gap: 1rem; }
+}
+
+/* ============================================================
+   Legal pages (privacy / terms) — shared classes
+   ============================================================ */
 .container {
   max-width: 720px;
   margin: 0 auto;
@@ -36,86 +519,59 @@ header.site {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Lilita One', 'Fredoka', sans-serif;
+  font-weight: 400;
   font-size: 1.5rem;
   color: var(--ink);
   text-decoration: none;
 }
 
-.brand span { color: var(--accent); }
+.brand::before {
+  content: "";
+  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 3px solid var(--ink);
+  box-shadow: 0 3px 0 var(--coral-dark);
+  background: url("/assets/icon.png") center / cover no-repeat;
+  flex: none;
+}
+
+.brand span { color: var(--coral); }
 
 nav a {
   color: var(--muted);
   text-decoration: none;
   margin-left: 1.25rem;
   font-size: 0.95rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
 }
 
-nav a:hover { color: var(--accent); }
+nav a:hover { color: var(--coral); }
 
-.hero {
-  text-align: center;
-  padding: 4rem 0 3rem;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 0.75rem;
-}
-
-.hero .tagline {
-  font-size: 1.25rem;
-  color: var(--muted);
-  max-width: 480px;
-  margin: 0 auto 2rem;
-}
-
-.note-badge {
-  font-size: 4rem;
-  display: block;
-  margin-bottom: 1rem;
-}
+/* legacy hero/feature classes kept for any page still using them */
+.hero { text-align: center; padding: 4rem 0 3rem; }
+.hero h1 { font-size: 3rem; margin-bottom: 0.75rem; }
+.hero .tagline { font-size: 1.25rem; color: var(--muted); max-width: 480px; margin: 0 auto 2rem; }
 
 .cta {
   display: inline-block;
-  background: var(--accent);
+  background: var(--coral);
   color: #fff;
   font-family: 'Fredoka', sans-serif;
   font-size: 1.1rem;
   padding: 0.9rem 2.2rem;
+  border: 3px solid var(--ink);
   border-radius: 999px;
+  box-shadow: 0 4px 0 var(--coral-dark);
   text-decoration: none;
-  transition: background 0.15s;
 }
 
-.cta:hover { background: var(--accent-dark); }
-
-.cta.soon {
-  background: var(--card);
-  color: var(--muted);
-  border: 2px solid #E5DCCE;
-  cursor: default;
-}
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin: 3rem 0;
-}
-
-.feature {
-  background: var(--card);
-  border-radius: 20px;
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(58, 50, 48, 0.06);
-}
-
-.feature .emoji { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
-
-.feature h3 { font-size: 1.05rem; margin-bottom: 0.25rem; }
-
-.feature p { font-size: 0.9rem; color: var(--muted); }
+.cta.soon { background: var(--card); color: var(--muted); box-shadow: 0 4px 0 var(--shadow); cursor: default; }
 
 article h1 { font-size: 2rem; margin: 1.5rem 0 0.25rem; }
 
@@ -125,23 +581,20 @@ article .updated {
   margin-bottom: 2rem;
 }
 
-article h2 {
-  font-size: 1.3rem;
-  margin: 2rem 0 0.5rem;
-}
+article h2 { font-size: 1.3rem; margin: 2rem 0 0.5rem; }
 
 article p, article li { margin-bottom: 0.75rem; }
 
 article ul { padding-left: 1.5rem; }
 
-article a { color: var(--accent-dark); }
+article a { color: var(--coral-dark); }
 
 footer.site {
   text-align: center;
   color: var(--muted);
   font-size: 0.85rem;
   padding: 2rem 0 0;
-  border-top: 1px solid #EDE4D6;
+  border-top: 3px solid var(--ink);
   margin-top: 3rem;
 }
 
