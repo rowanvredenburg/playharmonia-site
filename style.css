@@ -1,0 +1,148 @@
+:root {
+  --cream: #FBF5EA;
+  --ink: #3A3230;
+  --accent: #E8843C;
+  --accent-dark: #C96A28;
+  --card: #FFFFFF;
+  --muted: #8A7F78;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Nunito', -apple-system, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .brand {
+  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+header.site {
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 1.5rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand span { color: var(--accent); }
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 1.25rem;
+  font-size: 0.95rem;
+}
+
+nav a:hover { color: var(--accent); }
+
+.hero {
+  text-align: center;
+  padding: 4rem 0 3rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.hero .tagline {
+  font-size: 1.25rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 2rem;
+}
+
+.note-badge {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.cta {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.cta:hover { background: var(--accent-dark); }
+
+.cta.soon {
+  background: var(--card);
+  color: var(--muted);
+  border: 2px solid #E5DCCE;
+  cursor: default;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 3rem 0;
+}
+
+.feature {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(58, 50, 48, 0.06);
+}
+
+.feature .emoji { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+
+.feature h3 { font-size: 1.05rem; margin-bottom: 0.25rem; }
+
+.feature p { font-size: 0.9rem; color: var(--muted); }
+
+article h1 { font-size: 2rem; margin: 1.5rem 0 0.25rem; }
+
+article .updated {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+article h2 {
+  font-size: 1.3rem;
+  margin: 2rem 0 0.5rem;
+}
+
+article p, article li { margin-bottom: 0.75rem; }
+
+article ul { padding-left: 1.5rem; }
+
+article a { color: var(--accent-dark); }
+
+footer.site {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 2rem 0 0;
+  border-top: 1px solid #EDE4D6;
+  margin-top: 3rem;
+}
+
+footer.site a { color: var(--muted); }
