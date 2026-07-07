@@ -13,12 +13,11 @@ window.HARMONIA_COPY = {
   },
 
   hero: {
-    badge: "EAR TRAINING, MADE PLAYFUL",
+    badge: "MUSIC PUZZLE GAME",
     // One array entry per line. The last line is highlighted in coral.
-    headline: ["Hear it.", "Rebuild it.", "Nail it."],
-    lede: "Harmonia trains your ear by challenging you to rebuild real songs, instrument by instrument — from string quartets to garage rock. Journey through worlds of musical styles, keep your daily challenge streak alive, and level up your listening. Friendly enough for kids, deep enough for musicians.",
+    headline: ["Listen up.", "How good are your ears?"],
+    lede: "A cozy music puzzle game where you recreate the sound you hear with real instruments, note-by-note.",
     primaryCta: "Play Daily Challenge",
-    secondaryCta: "Get the app",
     sticker: "New puzzle every day",
   },
 
@@ -31,32 +30,30 @@ window.HARMONIA_COPY = {
   },
 
   features: {
-    heading: "How you'll train your ear",
-    sub: "Listen closely, pick the right notes, and bring the band back together.",
+    heading: "How it works",
     cards: [
       {
-        title: "Rebuild songs by ear",
-        text: "Listen to a track, then reconstruct each instrument's part note by note. Real ear training, disguised as play.",
+        title: "Listen",
+        text: "Every puzzle starts with a sound. Pay attention to the instruments and the notes included, your replays are limited.",
       },
       {
-        title: "Worlds of styles",
-        text: "Travel from Classical to Rock and beyond — every world brings new instruments, new textures, new challenges.",
+        title: "Experiment",
+        text: "Choose the instruments and their notes, try to recreate what you heard.",
       },
       {
-        title: "Daily challenge streaks",
-        text: "One shared puzzle a day, Wordle-style. Keep your streak burning and compare notes with friends.",
+        title: "Solve",
+        text: "Submit your answer and see how close you got. Develop your skills as puzzles become more challenging.",
       },
       {
-        title: "Kid-friendly by design",
-        text: "No reading music required. Gentle difficulty curves and a calm, paper-craft world the whole family can play.",
+        title: "Evolve",
+        text: "Progress through new musical worlds and come back every day for a fresh Daily Challenge.",
       },
     ],
   },
 
   cta: {
-    heading: "Today's puzzle is waiting.",
-    sub: "A new ear-training challenge lands every day — same song for everyone.",
-    button: "Get the app",
+    heading: "Think you have a good ear?",
+    button: "Play daily",
   },
 
   footer: {

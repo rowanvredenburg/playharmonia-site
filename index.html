@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harmonia — Train your musical ear</title>
-<meta name="description" content="Harmonia is a mobile ear-training game. Rebuild real songs instrument by instrument, journey through worlds of musical styles, and keep your daily challenge streak alive.">
+<title>Harmonia — Music puzzle game</title>
+<meta name="description" content="A cozy music puzzle game where you recreate the sound you hear with real instruments, note-by-note.">
 <link rel="icon" type="image/png" href="/assets/icon.png">
 <link rel="apple-touch-icon" href="/assets/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,15 +29,14 @@
 
 <header class="lp-hero">
   <div class="lp-hero-copy">
-    <span class="lp-badge" data-copy="hero.badge">EAR TRAINING, MADE PLAYFUL</span>
-    <h1 class="lp-headline" id="lp-headline">Hear it.<br>Rebuild it.<br><span>Nail it.</span></h1>
+    <span class="lp-badge" data-copy="hero.badge">MUSIC PUZZLE GAME</span>
+    <h1 class="lp-headline" id="lp-headline">Listen up.<br><span>How good are your ears?</span></h1>
     <p class="lp-lede" data-copy="hero.lede"></p>
     <div class="lp-hero-ctas">
       <a class="lp-btn lp-btn-coral lp-btn-big" id="lp-primary-cta" href="#">
         <span class="lp-play-circle" aria-hidden="true"></span>
         <span data-copy="hero.primaryCta">Play Daily Challenge</span>
       </a>
-      <a class="lp-btn lp-btn-white lp-btn-big" href="#get" data-copy="hero.secondaryCta">Get the app</a>
     </div>
     <div class="lp-store-badges">
       <a class="lp-store-badge" id="lp-appstore" href="#">
@@ -65,8 +64,7 @@
 </header>
 
 <section class="lp-features" id="features">
-  <h2 data-copy="features.heading">How you'll train your ear</h2>
-  <p class="lp-features-sub" data-copy="features.sub"></p>
+  <h2 data-copy="features.heading">How it works</h2>
   <div class="lp-feature-grid" id="lp-feature-grid">
     <!-- Cards rendered from copy.js -->
   </div>
@@ -74,9 +72,8 @@
 
 <section class="lp-cta-band" id="get">
   <div class="lp-cta-card">
-    <h2 data-copy="cta.heading">Today's puzzle is waiting.</h2>
-    <p data-copy="cta.sub"></p>
-    <a class="lp-btn lp-btn-white lp-btn-big" id="lp-cta-button" href="#" data-copy="cta.button">Get the app</a>
+    <h2 data-copy="cta.heading">Think you have a good ear?</h2>
+    <a class="lp-btn lp-btn-white lp-btn-big" id="lp-cta-button" href="#" data-copy="cta.button">Play daily</a>
   </div>
 </section>
 
@@ -131,17 +128,10 @@
   cards.forEach(function (card) {
     var div = document.createElement("div");
     div.className = "lp-feature-card";
-    var icon = document.createElement("div");
-    icon.className = "lp-feature-icon";
-    var img = document.createElement("img");
-    img.src = "/assets/icon.png";
-    img.alt = "";
-    icon.appendChild(img);
     var h3 = document.createElement("h3");
     h3.textContent = card.title || "";
     var p = document.createElement("p");
     p.textContent = card.text || "";
-    div.appendChild(icon);
     div.appendChild(h3);
     div.appendChild(p);
     grid.appendChild(div);
@@ -156,7 +146,8 @@
   // Primary hero CTA is a stub for the browser daily challenge until the
   // webapp exists; set links.webApp in copy.js when it ships.
   document.getElementById("lp-primary-cta").href = webApp;
-  document.getElementById("lp-cta-button").href = appStore !== "#" ? appStore : "#";
+  // Bottom "Play daily" button points at the browser daily challenge.
+  document.getElementById("lp-cta-button").href = webApp;
   var email = get("footer.contactEmail");
   if (email) document.getElementById("lp-contact").href = "mailto:" + email;
 

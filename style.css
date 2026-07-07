@@ -434,6 +434,7 @@ a { color: var(--coral-dark); }
   font-weight: 400;
   font-size: clamp(2rem, 4vw, 2.75rem);
   color: #fff;
+  margin-bottom: 1.4rem;
 }
 
 .lp-cta-card p {
@@ -503,99 +504,52 @@ a { color: var(--coral-dark); }
 }
 
 /* ============================================================
-   Legal pages (privacy / terms) — shared classes
+   Legal pages (privacy / terms) — landing-style card layout
    ============================================================ */
 .container {
-  max-width: 720px;
+  max-width: 820px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 3rem 1.5rem 4rem;
 }
 
-header.site {
-  padding: 1.5rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.lp-legal {
+  background: var(--card);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  box-shadow: 0 8px 0 var(--shadow);
+  padding: 2.5rem 2.75rem 3rem;
 }
 
-.brand {
-  display: inline-flex;
-  align-items: center;
+.lp-legal h1 {
   font-family: 'Lilita One', 'Fredoka', sans-serif;
   font-weight: 400;
-  font-size: 1.5rem;
-  color: var(--ink);
-  text-decoration: none;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: 0.25rem;
 }
 
-.brand::before {
-  content: "";
-  margin-right: 10px;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  border: 3px solid var(--ink);
-  box-shadow: 0 3px 0 var(--coral-dark);
-  background: url("/assets/icon.png") center / cover no-repeat;
-  flex: none;
-}
-
-.brand span { color: var(--coral); }
-
-nav a {
-  color: var(--muted);
-  text-decoration: none;
-  margin-left: 1.25rem;
-  font-size: 0.95rem;
+.lp-legal .updated {
   font-family: 'Fredoka', sans-serif;
   font-weight: 600;
-}
-
-nav a:hover { color: var(--coral); }
-
-/* legacy hero/feature classes kept for any page still using them */
-.hero { text-align: center; padding: 4rem 0 3rem; }
-.hero h1 { font-size: 3rem; margin-bottom: 0.75rem; }
-.hero .tagline { font-size: 1.25rem; color: var(--muted); max-width: 480px; margin: 0 auto 2rem; }
-
-.cta {
-  display: inline-block;
-  background: var(--coral);
-  color: #fff;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1.1rem;
-  padding: 0.9rem 2.2rem;
-  border: 3px solid var(--ink);
-  border-radius: 999px;
-  box-shadow: 0 4px 0 var(--coral-dark);
-  text-decoration: none;
-}
-
-.cta.soon { background: var(--card); color: var(--muted); box-shadow: 0 4px 0 var(--shadow); cursor: default; }
-
-article h1 { font-size: 2rem; margin: 1.5rem 0 0.25rem; }
-
-article .updated {
   color: var(--muted);
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
 
-article h2 { font-size: 1.3rem; margin: 2rem 0 0.5rem; }
-
-article p, article li { margin-bottom: 0.75rem; }
-
-article ul { padding-left: 1.5rem; }
-
-article a { color: var(--coral-dark); }
-
-footer.site {
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.85rem;
-  padding: 2rem 0 0;
-  border-top: 3px solid var(--ink);
-  margin-top: 3rem;
+.lp-legal h2 {
+  font-size: 1.3rem;
+  margin: 2rem 0 0.5rem;
 }
 
-footer.site a { color: var(--muted); }
+.lp-legal p, .lp-legal li {
+  font-weight: 600;
+  color: rgba(46, 42, 38, 0.75);
+  margin-bottom: 0.75rem;
+}
+
+.lp-legal ul { padding-left: 1.5rem; }
+
+.lp-legal a { color: var(--coral-dark); }
+
+@media (max-width: 600px) {
+  .lp-legal { padding: 1.75rem 1.4rem 2rem; }
+}
