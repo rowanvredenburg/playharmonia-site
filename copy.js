@@ -7,7 +7,7 @@ window.HARMONIA_COPY = {
 
   nav: {
     brand: "Harmonia",
-    linkFeatures: "Features",
+    linkFeatures: "How it works",
     linkDaily: "Daily Challenge",
     getApp: "Get the app",
   },
@@ -33,19 +33,19 @@ window.HARMONIA_COPY = {
     heading: "How it works",
     cards: [
       {
-        title: "Listen",
+        title: "Listen 👂",
         text: "Every puzzle starts with a sound. Pay attention to the instruments and the notes included, your replays are limited.",
       },
       {
-        title: "Experiment",
+        title: "Experiment 🔍",
         text: "Choose the instruments and their notes, try to recreate what you heard.",
       },
       {
-        title: "Solve",
+        title: "Solve ✅",
         text: "Submit your answer and see how close you got. Develop your skills as puzzles become more challenging.",
       },
       {
-        title: "Evolve",
+        title: "Evolve 📈",
         text: "Progress through new musical worlds and come back every day for a fresh Daily Challenge.",
       },
     ],
@@ -64,15 +64,24 @@ window.HARMONIA_COPY = {
     contactEmail: "support@playharmonia.app",
   },
 
+  // Optional gameplay video shown FIRST in the phone, before the
+  // screenshots. Drop an .mp4 in /assets/ and put its path here. Leave
+  // as "" (empty) to skip the video entirely. The video autoplays muted
+  // (browsers block autoplay-with-sound); a speaker button lets viewers
+  // unmute. When it finishes it hands off to the screenshot slideshow.
+  heroVideo: "/assets/screenshots/Video_web.mp4",
+  // Optional poster image shown before the video loads/plays.
+  heroVideoPoster: "/assets/screenshots/SS1.PNG",
+
   // Screenshots shown in the phone on the hero. Drop image files in
   // /assets/screenshots/ and list them here in the order you want.
   // Missing files are skipped automatically.
   screenshots: [
-    "/assets/screenshots/screen-1.png",
-    "/assets/screenshots/screen-2.png",
-    "/assets/screenshots/screen-3.png",
-    "/assets/screenshots/screen-4.png",
-    "/assets/screenshots/screen-5.png",
+    "/assets/screenshots/SS1.PNG",
+    "/assets/screenshots/SS2.PNG",
+    "/assets/screenshots/SS3.PNG",
+    "/assets/screenshots/SS4.PNG",
+    "/assets/screenshots/SS5.PNG",
   ],
   // Milliseconds each screenshot stays on screen before sliding on.
   screenshotInterval: 4000,

@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Harmonia — Music puzzle game</title>
 <meta name="description" content="A cozy music puzzle game where you recreate the sound you hear with real instruments, note-by-note.">
-<link rel="icon" type="image/png" href="/assets/icon.png">
-<link rel="apple-touch-icon" href="/assets/icon.png">
+<link rel="icon" type="image/png" href="/assets/harmonia_icon_r1.png">
+<link rel="apple-touch-icon" href="/assets/harmonia_icon_r1.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 
 <nav class="lp-nav">
   <a class="lp-brand" href="/">
-    <img src="/assets/icon.png" alt="Harmonia icon">
+    <img src="/assets/harmonia_icon_r1.png" alt="Harmonia icon">
     <span data-copy="nav.brand">Harmonia</span>
   </a>
   <div class="lp-nav-links">
@@ -54,7 +54,7 @@
     <div class="lp-phone">
       <div class="lp-phone-screen" id="lp-carousel">
         <div class="lp-shot-placeholder">
-          <img src="/assets/icon.png" alt="Harmonia">
+          <img src="/assets/harmonia_icon_r1.png" alt="Harmonia">
           <p>Screenshots coming soon</p>
         </div>
       </div>
@@ -79,7 +79,7 @@
 
 <footer class="lp-footer">
   <div class="lp-footer-brand">
-    <img src="/assets/icon.png" alt="">
+    <img src="/assets/harmonia_icon_r1.png" alt="">
     <span data-copy="footer.copyright">© 2026 Harmonia · playharmonia.com</span>
   </div>
   <div class="lp-footer-links">
@@ -151,47 +151,186 @@
   var email = get("footer.contactEmail");
   if (email) document.getElementById("lp-contact").href = "mailto:" + email;
 
-  // Screenshot carousel: preload the listed files, keep the ones that
-  // exist, and auto-advance with a crossfade.
+  // Hero media carousel: an optional gameplay video plays first, then the
+  // screenshots slideshow. Viewers can click the arrows, tap the dots, or
+  // swipe to move between slides. Preload the screenshots and keep only the
+  // ones that actually exist before building the carousel.
+  var video = get("heroVideo") || "";
+  var poster = get("heroVideoPoster") || "";
   var shots = get("screenshots") || [];
   var interval = get("screenshotInterval") || 4000;
   var carousel = document.getElementById("lp-carousel");
   var results = new Array(shots.length);
   var pending = shots.length;
 
-  function startCarousel() {
+  function buildCarousel() {
     var loaded = results.filter(Boolean); // keeps copy.js order
-    if (!loaded.length) return; // keep the placeholder
+    if (!video && !loaded.length) return; // nothing to show, keep placeholder
+
     carousel.innerHTML = "";
-    var imgs = loaded.map(function (src, i) {
+
+    // Slides: [video?] then each screenshot.
+    var slides = [];
+    var videoEl = null;
+    var soundBtn = null;
+
+    if (video) {
+      var vslide = document.createElement("div");
+      vslide.className = "lp-slide active";
+      videoEl = document.createElement("video");
+      videoEl.className = "lp-video";
+      videoEl.src = video;
+      if (poster) videoEl.poster = poster;
+      videoEl.muted = true;
+      videoEl.setAttribute("muted", "");
+      videoEl.playsInline = true;
+      videoEl.setAttribute("playsinline", "");
+      videoEl.preload = "auto";
+      vslide.appendChild(videoEl);
+
+      // Speaker toggle so viewers can hear the audio (autoplay must be muted).
+      soundBtn = document.createElement("button");
+      soundBtn.type = "button";
+      soundBtn.className = "lp-sound-btn";
+      soundBtn.setAttribute("aria-label", "Unmute video");
+      soundBtn.textContent = "🔇";
+      soundBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        videoEl.muted = !videoEl.muted;
+        soundBtn.textContent = videoEl.muted ? "🔇" : "🔊";
+        soundBtn.setAttribute("aria-label", videoEl.muted ? "Unmute video" : "Mute video");
+        if (!videoEl.muted) videoEl.play();
+      });
+      vslide.appendChild(soundBtn);
+      carousel.appendChild(vslide);
+      slides.push(vslide);
+    }
+
+    loaded.forEach(function (src) {
+      var slide = document.createElement("div");
+      slide.className = "lp-slide" + (slides.length === 0 ? " active" : "");
       var img = document.createElement("img");
       img.src = src;
-      img.className = "lp-shot" + (i === 0 ? " active" : "");
+      img.className = "lp-shot";
       img.alt = "Harmonia screenshot";
-      carousel.appendChild(img);
-      return img;
+      slide.appendChild(img);
+      carousel.appendChild(slide);
+      slides.push(slide);
     });
-    if (imgs.length < 2) return;
+
     var current = 0;
-    setInterval(function () {
-      imgs[current].classList.remove("active");
-      current = (current + 1) % imgs.length;
-      imgs[current].classList.add("active");
-    }, interval);
+    var timer = null;
+    var firstIsVideo = !!video;
+
+    function isScreenshot(i) {
+      return !(firstIsVideo && i === 0);
+    }
+
+    function stopTimer() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    // Auto-advance only while sitting on a screenshot slide.
+    function startTimer() {
+      stopTimer();
+      if (slides.length < 2) return;
+      if (!isScreenshot(current)) return;
+      timer = setInterval(function () { go(current + 1, false); }, interval);
+    }
+
+    function go(index, userInitiated) {
+      if (slides.length < 2) return;
+      var next = (index + slides.length) % slides.length;
+      slides[current].classList.remove("active");
+      slides[next].classList.add("active");
+      current = next;
+      // Play the video when it's shown, pause it otherwise.
+      if (videoEl) {
+        if (firstIsVideo && current === 0) { videoEl.currentTime = 0; videoEl.play(); }
+        else { videoEl.pause(); }
+      }
+      if (userInitiated) stopTimer();
+      startTimer();
+      dots.forEach(function (d, i) { d.classList.toggle("active", i === current); });
+    }
+
+    // Dots.
+    var dotWrap = document.createElement("div");
+    dotWrap.className = "lp-dots";
+    var dots = slides.map(function (_, i) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "lp-dot" + (i === 0 ? " active" : "");
+      dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+      dot.addEventListener("click", function () { go(i, true); });
+      dotWrap.appendChild(dot);
+      return dot;
+    });
+
+    // Prev / next arrows.
+    function makeArrow(cls, label, delta) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "lp-arrow " + cls;
+      btn.setAttribute("aria-label", label);
+      btn.innerHTML = cls === "lp-arrow-prev" ? "&#8249;" : "&#8250;";
+      btn.addEventListener("click", function () { go(current + delta, true); });
+      return btn;
+    }
+    var phone = carousel.closest(".lp-phone") || carousel;
+    if (slides.length > 1) {
+      phone.appendChild(makeArrow("lp-arrow-prev", "Previous", -1));
+      phone.appendChild(makeArrow("lp-arrow-next", "Next", 1));
+      phone.parentNode.insertBefore(dotWrap, phone.nextSibling);
+    }
+
+    // Swipe support.
+    var startX = null;
+    carousel.addEventListener("touchstart", function (e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    carousel.addEventListener("touchend", function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1), true);
+      startX = null;
+    }, { passive: true });
+
+    // Kick things off.
+    if (firstIsVideo) {
+      videoEl.addEventListener("ended", function () { go(1, false); });
+      videoEl.play().catch(function () {}); // muted autoplay
+    }
+    startTimer();
   }
 
-  if (!pending) return;
-  shots.forEach(function (src, i) {
-    var probe = new Image();
-    probe.onload = function () {
-      results[i] = src;
-      if (--pending === 0) startCarousel();
-    };
-    probe.onerror = function () {
-      if (--pending === 0) startCarousel();
-    };
-    probe.src = src;
-  });
+  // Probe the video first (if any) so a missing file is skipped cleanly
+  // rather than showing a broken black slide, then probe the screenshots.
+  function probeShotsThenBuild() {
+    if (!pending) { buildCarousel(); return; }
+    shots.forEach(function (src, i) {
+      var probe = new Image();
+      probe.onload = function () {
+        results[i] = src;
+        if (--pending === 0) buildCarousel();
+      };
+      probe.onerror = function () {
+        if (--pending === 0) buildCarousel();
+      };
+      probe.src = src;
+    });
+  }
+
+  if (video) {
+    var vp = document.createElement("video");
+    vp.preload = "metadata";
+    vp.muted = true;
+    vp.addEventListener("loadedmetadata", probeShotsThenBuild);
+    vp.addEventListener("error", function () { video = ""; probeShotsThenBuild(); });
+    vp.src = video;
+  } else {
+    probeShotsThenBuild();
+  }
 })();
 </script>
 </body>

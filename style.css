@@ -285,17 +285,84 @@ a { color: var(--coral-dark); }
   height: 100%;
 }
 
-.lp-shot {
+.lp-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.lp-slide.active { opacity: 1; pointer-events: auto; }
+
+.lp-shot,
+.lp-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.8s ease;
 }
 
-.lp-shot.active { opacity: 1; }
+/* Speaker toggle overlaid on the video slide. */
+.lp-sound-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  background: var(--card);
+  box-shadow: 0 3px 0 var(--shadow);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 3;
+}
+.lp-sound-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--shadow); }
+
+/* Prev / next arrows sit just outside the phone. */
+.lp-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  background: var(--card);
+  box-shadow: 0 4px 0 var(--shadow);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+  z-index: 4;
+}
+.lp-arrow:hover { background: var(--coral); color: #fff; }
+.lp-arrow:active { transform: translateY(calc(-50% + 2px)); box-shadow: 0 2px 0 var(--shadow); }
+.lp-arrow-prev { left: 10px; }
+.lp-arrow-next { right: 10px; }
+
+/* Dot indicators below the phone. */
+.lp-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+.lp-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.lp-dot.active { background: var(--coral); }
 
 .lp-shot-placeholder {
   position: absolute;
@@ -376,7 +443,7 @@ a { color: var(--coral-dark); }
   border: 3px solid var(--ink);
   border-radius: 20px;
   box-shadow: 0 6px 0 #CDBFA3;
-  padding: 1.6rem 1.5rem;
+  padding: 1.1rem 1.2rem;
 }
 
 .lp-feature-icon {
@@ -398,16 +465,16 @@ a { color: var(--coral-dark); }
 }
 
 .lp-feature-card h3 {
-  font-size: 1.3rem;
-  margin-top: 1rem;
+  font-size: 1.25rem;
+  margin-top: 0;
 }
 
 .lp-feature-card p {
   font-weight: 600;
   font-size: 0.95rem;
-  line-height: 1.55;
+  line-height: 1.45;
   color: rgba(46, 42, 38, 0.65);
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
 }
 
 /* ------------------------------------------------------------
