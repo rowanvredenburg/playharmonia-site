@@ -57,7 +57,7 @@ window.HARMONIA_COPY = {
   },
 
   footer: {
-    copyright: "© 2026 Harmonia · playharmonia.com",
+    copyright: "© 2026 Harmonia · playharmonia.app",
     linkPrivacy: "Privacy",
     linkTerms: "Terms",
     linkContact: "Contact",
