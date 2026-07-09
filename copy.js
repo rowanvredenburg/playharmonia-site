@@ -16,7 +16,7 @@ window.HARMONIA_COPY = {
     badge: "MUSIC PUZZLE GAME",
     // One array entry per line. The last line is highlighted in coral.
     headline: ["Listen up.", "How good are your ears?"],
-    lede: "A cozy music puzzle game where you recreate the sound you hear with real instruments, note-by-note.",
+    lede: "A cozy music puzzle game where you recreate the sound you hear with real instruments, note by note.",
     primaryCta: "Play Daily Challenge",
     sticker: "New puzzle every day",
   },
