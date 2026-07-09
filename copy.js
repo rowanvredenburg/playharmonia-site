@@ -24,7 +24,7 @@ window.HARMONIA_COPY = {
   // Links — swap in the real URLs when they're live.
   // webApp is a stub for the browser version of the daily challenge.
   links: {
-    webApp: "#",
+    webApp: "https://daily.playharmonia.app/index.html",
     appStore: "#",
     googlePlay: "#",
   },
