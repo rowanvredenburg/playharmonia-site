@@ -211,6 +211,10 @@ a { color: var(--coral-dark); }
   flex-wrap: wrap;
 }
 
+.lp-store-badges-center {
+  justify-content: center;
+}
+
 .lp-store-badge {
   display: flex;
   align-items: center;

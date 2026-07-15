@@ -7,8 +7,6 @@ window.HARMONIA_COPY = {
 
   nav: {
     brand: "Harmonia",
-    linkFeatures: "How it works",
-    linkDaily: "Daily Challenge",
     getApp: "Get the app",
   },
 
@@ -46,14 +44,16 @@ window.HARMONIA_COPY = {
       },
       {
         title: "Evolve 📈",
-        text: "Progress through new musical worlds and come back every day for a fresh Daily Challenge.",
+        text: "Progress through hundreds of levels across musical worlds, each with its own theme and instruments, then come back every day for a fresh Daily Challenge.",
       },
     ],
   },
 
+  // Bottom band — the download destination the nav "Get the app" button
+  // scrolls to. Store badges below route to each platform's store.
   cta: {
-    heading: "Think you have a good ear?",
-    button: "Play daily",
+    heading: "Download Harmonia today!",
+    sub: "Free to play. Jump into a world of musical puzzles.",
   },
 
   footer: {
