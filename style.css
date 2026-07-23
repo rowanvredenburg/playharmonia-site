@@ -1,7 +1,7 @@
 /* ============================================================
    Harmonia — paper & play design language
    Flat fills · 3px ink outlines · hard offset shadows
-   Lilita One (display) / Fredoka (UI) / Nunito (body)
+   Lilita One (display) / Fredoka (UI) / Lexend (body)
    ============================================================ */
 
 :root {
@@ -26,13 +26,13 @@
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Nunito', -apple-system, sans-serif;
+  font-family: 'Lexend', -apple-system, sans-serif;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, .brand {
-  font-family: 'Fredoka', 'Nunito', sans-serif;
+  font-family: 'Fredoka', 'Lexend', sans-serif;
   font-weight: 600;
 }
 
