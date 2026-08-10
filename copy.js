@@ -21,10 +21,14 @@ window.HARMONIA_COPY = {
 
   // Links — swap in the real URLs when they're live.
   // webApp is a stub for the browser version of the daily challenge.
+  // appStore: live App Store listing (id6787542089) — 404s until the app
+  //   is published, then resolves automatically on launch day.
+  // googlePlay: iOS-first launch, so the "Google Play" badge routes to the
+  //   Android closed-beta signup page instead of a Play Store listing.
   links: {
     webApp: "https://daily.playharmonia.app/index.html",
-    appStore: "#",
-    googlePlay: "#",
+    appStore: "https://apps.apple.com/app/id6787542089",
+    googlePlay: "/beta/",
   },
 
   features: {
@@ -82,6 +86,8 @@ window.HARMONIA_COPY = {
     "/assets/screenshots/SS3.PNG",
     "/assets/screenshots/SS4.PNG",
     "/assets/screenshots/SS5.PNG",
+    "/assets/screenshots/SS6.PNG",
+    "/assets/screenshots/SS7.PNG",
   ],
   // Milliseconds each screenshot stays on screen before sliding on.
   screenshotInterval: 4000,

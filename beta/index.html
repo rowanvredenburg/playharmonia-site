@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join the Harmonia Android Beta</title>
+<meta name="description" content="Harmonia is available on iOS. Join the Android closed beta and be among the first to play on your Android device.">
+<meta name="robots" content="noindex">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Harmonia">
+<meta property="og:title" content="Join the Harmonia Android Beta">
+<meta property="og:description" content="Harmonia is available on iOS. Join the Android closed beta and be among the first to play.">
+<meta property="og:url" content="https://playharmonia.app/beta/">
+<meta property="og:image" content="https://playharmonia.app/assets/harmonia_icon_r1.png">
+
+<link rel="icon" type="image/png" href="/assets/harmonia_icon_r1.png">
+<link rel="apple-touch-icon" href="/assets/harmonia_icon_r1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Fredoka:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body class="landing lp-simple">
+
+<nav class="lp-nav">
+  <a class="lp-brand" href="/">
+    <img src="/assets/harmonia_icon_r1.png" alt="Harmonia icon">
+    <span>Harmonia</span>
+  </a>
+</nav>
+
+<main class="lp-simple-main">
+  <div class="lp-card">
+    <!-- Signup form -->
+    <div id="signup">
+      <img class="lp-card-icon" src="/assets/harmonia_icon_r1.png" alt="Harmonia">
+      <h1>Play Harmonia on Android</h1>
+      <p class="lp-sub">Harmonia is available on iOS. Want it on your Android device? Join the closed beta and you'll be among the first to play.</p>
+
+      <form class="lp-form" id="beta-form" novalidate>
+        <div class="lp-field">
+          <label for="email">Google account email</label>
+          <input class="lp-input" type="email" id="email" name="email" autocomplete="email" placeholder="you@gmail.com" required>
+          <p class="hint">Use the Google account signed in on your Android phone. A different email will not work.</p>
+        </div>
+
+        <div class="lp-row">
+          <div class="lp-field">
+            <label for="device">Phone model <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+            <input class="lp-input" type="text" id="device" name="device" placeholder="e.g. Pixel 8">
+          </div>
+          <div class="lp-field">
+            <label for="android_version">Android version <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+            <input class="lp-input" type="text" id="android_version" name="android_version" placeholder="e.g. 14">
+          </div>
+        </div>
+
+        <label class="lp-consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <span>I'm okay with Harmonia emailing me about the Android beta.</span>
+        </label>
+
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEMMHTDl4a0YKD1S"></div>
+
+        <button class="lp-btn lp-btn-coral lp-btn-big" type="submit" id="submit-btn">Join the beta</button>
+        <p class="lp-form-error" id="form-error" role="alert"></p>
+      </form>
+
+      <a class="lp-back" href="/">← Back to Harmonia</a>
+    </div>
+
+    <!-- Success state -->
+    <div id="success" class="lp-success">
+      <div class="lp-check">✓</div>
+      <h1>You're on the list!</h1>
+      <p class="lp-sub">We add testers in batches. When it's your turn you'll get an email with a Play Store opt-in link — tap it on your Android phone to install Harmonia. Keep an eye on your inbox.</p>
+      <a class="lp-back" href="/">← Back to Harmonia</a>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  var API_BASE = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+    ? "http://localhost:8787"
+    : "https://api.playharmonia.app";
+
+  var form = document.getElementById("beta-form");
+  var errEl = document.getElementById("form-error");
+  var btn = document.getElementById("submit-btn");
+
+  function showError(msg) { errEl.textContent = msg; }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    showError("");
+
+    var email = document.getElementById("email").value.trim();
+    var consent = document.getElementById("consent").checked;
+
+    if (!email) { showError("Please enter your email."); return; }
+    if (!consent) { showError("Please tick the consent box so we can email you."); return; }
+
+    var token = "";
+    var tokenField = form.querySelector('[name="cf-turnstile-response"]');
+    if (tokenField) token = tokenField.value;
+    if (!token) { showError("Please complete the anti-spam check and try again."); return; }
+
+    btn.disabled = true;
+    var original = btn.textContent;
+    btn.textContent = "Joining…";
+
+    fetch(API_BASE + "/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        device: document.getElementById("device").value.trim(),
+        android_version: document.getElementById("android_version").value.trim(),
+        turnstileToken: token
+      })
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (res.ok && res.d && res.d.ok) {
+          document.getElementById("signup").style.display = "none";
+          document.getElementById("success").style.display = "block";
+          if (window.posthog) window.posthog.capture("android_beta_signup");
+        } else {
+          var code = res.d && res.d.error;
+          if (code === "invalid_email") showError("That email doesn't look right — please check it.");
+          else if (code === "turnstile_failed") showError("The anti-spam check didn't pass. Please try again.");
+          else showError("Something went wrong. Please try again in a moment.");
+          if (window.turnstile) window.turnstile.reset();
+          btn.disabled = false;
+          btn.textContent = original;
+        }
+      })
+      .catch(function () {
+        showError("Couldn't reach the server. Check your connection and try again.");
+        if (window.turnstile) window.turnstile.reset();
+        btn.disabled = false;
+        btn.textContent = original;
+      });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Cloudflare Worker local dev
+worker/.dev.vars
+worker/.wrangler/
+.wrangler/
+node_modules/
+
+# OS / editor / local tooling
+.DS_Store
+.claude/
+
+# macOS
+.DS_Store
+
+# Video master — large; only the compressed Video_web.mp4 is served
+assets/screenshots/Video_web.mov
+# Full-length compressed mp4 kept as a local fallback for the trimmed hero cut
+assets/screenshots/Video_web_full.mp4

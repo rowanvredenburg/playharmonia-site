@@ -1,0 +1,27 @@
+# Harmonia — Android closed-beta signup API (Cloudflare Worker)
+# Deploy from this folder:  npx wrangler deploy
+# The marketing site stays on GitHub Pages; this Worker is a separate
+# service reached at api.playharmonia.app.
+name = "harmonia-beta-api"
+main = "src/index.js"
+compatibility_date = "2026-08-08"
+
+# Serve the Worker from a custom subdomain. On first deploy wrangler
+# provisions the DNS record + TLS cert automatically (the playharmonia.app
+# zone is already on this Cloudflare account).
+routes = [
+  { pattern = "api.playharmonia.app", custom_domain = true },
+  # The web game's "Get the full game" button opens daily.playharmonia.app/download;
+  # this route lets the Worker redirect it to the right store/page by User-Agent.
+  { pattern = "daily.playharmonia.app/download*", zone_name = "playharmonia.app" }
+]
+
+# D1 database created with `wrangler d1 create harmonia-beta`.
+# Bound as env.DB inside the Worker.
+[[d1_databases]]
+binding = "DB"
+database_name = "harmonia-beta"
+database_id = "0535278a-d6ca-4e36-9e3f-f28156e10f01"
+
+# TURNSTILE_SECRET is stored as an encrypted secret, NOT here:
+#   npx wrangler secret put TURNSTILE_SECRET

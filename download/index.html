@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Harmonia</title>
+<meta name="description" content="Download Harmonia for iOS.">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Harmonia">
+<meta property="og:title" content="Get Harmonia">
+<meta property="og:description" content="Download Harmonia for iOS.">
+<meta property="og:url" content="https://playharmonia.app/download/">
+<meta property="og:image" content="https://playharmonia.app/assets/harmonia_icon_r1.png">
+
+<link rel="icon" type="image/png" href="/assets/harmonia_icon_r1.png">
+<link rel="apple-touch-icon" href="/assets/harmonia_icon_r1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Fredoka:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="landing lp-simple">
+
+<nav class="lp-nav">
+  <a class="lp-brand" href="/">
+    <img src="/assets/harmonia_icon_r1.png" alt="Harmonia icon">
+    <span>Harmonia</span>
+  </a>
+</nav>
+
+<main class="lp-simple-main">
+  <div class="lp-card">
+    <img class="lp-card-icon" src="/assets/harmonia_icon_r1.png" alt="Harmonia">
+    <h1>Get Harmonia on iPhone</h1>
+    <p class="lp-sub" id="lp-download-sub">Scan the code with your camera to download from the App Store.</p>
+
+    <div class="lp-qr" id="lp-qr">
+      <img src="/assets/appstore-qr.svg" alt="QR code linking to Harmonia on the App Store">
+    </div>
+
+    <div class="lp-store-badges lp-store-badges-center">
+      <a class="lp-store-badge" id="lp-appstore" href="https://apps.apple.com/app/id6787542089">
+        <svg viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        <span><small>DOWNLOAD ON THE</small>App Store</span>
+      </a>
+    </div>
+
+    <p class="lp-alt-link">Playing on Android? <a href="/beta/">Join the closed beta →</a></p>
+    <a class="lp-back" href="/">← Back to Harmonia</a>
+  </div>
+</main>
+
+<script>
+(function () {
+  var ua = navigator.userAgent || navigator.vendor || "";
+  var isIOS = /iPad|iPhone|iPod/i.test(ua) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var isAndroid = /android/i.test(ua);
+
+  // On iPhone the QR is pointless — they're already on the device. Hide it
+  // and let the App Store button do the work.
+  if (isIOS) {
+    document.getElementById("lp-qr").style.display = "none";
+    document.getElementById("lp-download-sub").textContent =
+      "Tap below to download Harmonia from the App Store.";
+  } else if (isAndroid) {
+    // An Android visitor landed here by mistake — point them at the beta.
+    window.location.replace("/beta/");
+  }
+})();
+</script>
+</body>
+</html>

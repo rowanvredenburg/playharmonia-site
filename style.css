@@ -624,3 +624,183 @@ a { color: var(--coral-dark); }
 @media (max-width: 600px) {
   .lp-legal { padding: 1.75rem 1.4rem 2rem; }
 }
+
+/* ============================================================
+   Simple centred pages (beta signup / download)
+   ============================================================ */
+.lp-simple {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-simple-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem 3.5rem;
+}
+
+.lp-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--card);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  box-shadow: 0 8px 0 var(--shadow);
+  padding: 2.5rem 2.5rem 2.75rem;
+  text-align: center;
+}
+
+.lp-card-icon {
+  width: 82px;
+  height: 82px;
+  border-radius: 20px;
+  border: 3px solid var(--ink);
+  box-shadow: 0 5px 0 var(--coral-dark);
+  display: block;
+  margin: 0 auto 1.25rem;
+}
+
+.lp-card h1 {
+  font-family: 'Lilita One', 'Fredoka', sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.08;
+}
+
+.lp-card .lp-sub {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: rgba(46, 42, 38, 0.72);
+  margin: 0.85rem 0 1.6rem;
+}
+
+/* ---- Form ---- */
+.lp-form { text-align: left; }
+
+.lp-field { margin-bottom: 1.1rem; }
+
+.lp-field label {
+  display: block;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+.lp-field .hint {
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  line-height: 1.4;
+}
+
+.lp-input {
+  width: 100%;
+  font-family: 'Lexend', sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+  box-shadow: 0 3px 0 var(--shadow);
+}
+
+.lp-input:focus {
+  outline: none;
+  background: #fff;
+  box-shadow: 0 3px 0 var(--coral-dark);
+}
+
+.lp-row {
+  display: flex;
+  gap: 0.9rem;
+}
+.lp-row .lp-field { flex: 1; }
+
+.lp-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(46, 42, 38, 0.8);
+  margin: 0.4rem 0 1.2rem;
+}
+.lp-consent input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex: none;
+  accent-color: var(--coral);
+}
+
+.lp-form .lp-btn { width: 100%; }
+
+.lp-form-error {
+  color: var(--coral-dark);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 0.9rem;
+  min-height: 1.1em;
+}
+
+.cf-turnstile { margin: 0.4rem 0 1.1rem; }
+
+/* ---- Success state ---- */
+.lp-success { display: none; }
+.lp-success .lp-check {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 3px solid var(--ink);
+  box-shadow: 0 4px 0 var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1.2rem;
+}
+
+/* ---- Download / QR ---- */
+.lp-qr {
+  width: 220px;
+  height: 220px;
+  padding: 14px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 20px;
+  box-shadow: 0 6px 0 var(--shadow);
+  margin: 0.5rem auto 1.4rem;
+}
+.lp-qr img { display: block; width: 100%; height: 100%; }
+
+.lp-store-badges.lp-store-badges-center { margin-top: 0; }
+
+.lp-alt-link {
+  margin-top: 1.6rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.lp-alt-link a { color: var(--coral-dark); font-weight: 700; }
+
+.lp-back {
+  display: inline-block;
+  margin-top: 1.4rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+}
+.lp-back:hover { color: var(--coral); }
+
+@media (max-width: 600px) {
+  .lp-card { padding: 1.9rem 1.4rem 2rem; }
+  .lp-row { flex-direction: column; gap: 0; }
+}
