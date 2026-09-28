@@ -7,6 +7,7 @@ window.HARMONIA_COPY = {
 
   nav: {
     brand: "Harmonia",
+    credits: "Credits",
     getApp: "Get the app",
   },
 

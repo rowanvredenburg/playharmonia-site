@@ -572,6 +572,8 @@ a { color: var(--coral-dark); }
 @media (max-width: 480px) {
   .lp-phone { width: 280px; height: 560px; }
   .lp-nav-links { gap: 1rem; }
+  /* Icon-only brand so Credits + Get the app fit on one line */
+  .lp-brand span { display: none; }
 }
 
 /* ============================================================
@@ -620,6 +622,13 @@ a { color: var(--coral-dark); }
 .lp-legal ul { padding-left: 1.5rem; }
 
 .lp-legal a { color: var(--coral-dark); }
+
+/* Credits — centred groups, like the in-game credits screen */
+.lp-credits { text-align: center; }
+.lp-credits h2 { color: var(--coral); }
+.lp-credits ul { list-style: none; padding-left: 0; }
+.lp-credits li { margin-bottom: 0.4rem; }
+.lp-credits li small { display: block; font-size: 0.85rem; color: var(--muted); }
 
 @media (max-width: 600px) {
   .lp-legal { padding: 1.75rem 1.4rem 2rem; }
