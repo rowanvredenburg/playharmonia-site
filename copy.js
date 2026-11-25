@@ -76,19 +76,19 @@ window.HARMONIA_COPY = {
   // unmute. When it finishes it hands off to the screenshot slideshow.
   heroVideo: "/assets/screenshots/Video_web.mp4",
   // Optional poster image shown before the video loads/plays.
-  heroVideoPoster: "/assets/screenshots/SS1.PNG",
+  heroVideoPoster: "/assets/screenshots/1_board.png",
 
   // Screenshots shown in the phone on the hero. Drop image files in
   // /assets/screenshots/ and list them here in the order you want.
   // Missing files are skipped automatically.
   screenshots: [
-    "/assets/screenshots/SS1.PNG",
-    "/assets/screenshots/SS2.PNG",
-    "/assets/screenshots/SS3.PNG",
-    "/assets/screenshots/SS4.PNG",
-    "/assets/screenshots/SS5.PNG",
-    "/assets/screenshots/SS6.PNG",
-    "/assets/screenshots/SS7.PNG",
+    "/assets/screenshots/1_board.png",
+    "/assets/screenshots/2_result_perfect.png",
+    "/assets/screenshots/3_daily_lobby.png",
+    "/assets/screenshots/4_daily_complete.png",
+    "/assets/screenshots/5_main_menu.png",
+    "/assets/screenshots/6_level_select.png",
+    "/assets/screenshots/7_listen.png",
   ],
   // Milliseconds each screenshot stays on screen before sliding on.
   screenshotInterval: 4000,
