@@ -86,9 +86,8 @@ window.HARMONIA_COPY = {
     "/assets/screenshots/2_result_perfect.png",
     "/assets/screenshots/3_daily_lobby.png",
     "/assets/screenshots/4_daily_complete.png",
-    "/assets/screenshots/5_main_menu.png",
-    "/assets/screenshots/6_level_select.png",
-    "/assets/screenshots/7_listen.png",
+    "/assets/screenshots/5_level_select.png",
+    "/assets/screenshots/6_listen.png",
   ],
   // Milliseconds each screenshot stays on screen before sliding on.
   screenshotInterval: 4000,
